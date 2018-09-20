@@ -1,0 +1,28 @@
+@import 'base';
+
+p {
+    font-family: $body;
+}
+
+div {
+    h1 {
+        font-size: $extralarge;
+        font-family: $heading;
+    }
+
+    h2 {
+        font-size: $extralarge;
+        font-family: $heading;
+    }
+}
+
+.carousel-caption {
+    padding: 0 20px;
+    margin:0 auto;
+    margin-top: 200px;
+    text-align: right;
+}
+
+.active {
+    color: $primary;
+}

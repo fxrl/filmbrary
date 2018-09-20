@@ -1,0 +1,25 @@
+p {
+  font-family: "Open Sans", sans-serif;
+}
+
+div h1 {
+  font-size: 2.5rem;
+  font-family: "Oswald", sans-serif;
+}
+div h2 {
+  font-size: 2.5rem;
+  font-family: "Oswald", sans-serif;
+}
+
+.carousel-caption {
+  padding: 0 20px;
+  margin: 0 auto;
+  margin-top: 200px;
+  text-align: right;
+}
+
+.active {
+  color: red;
+}
+
+/*# sourceMappingURL=main.css.map */

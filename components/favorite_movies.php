@@ -1,0 +1,20 @@
+<?php 
+    $sql_query = "SELECT * from movies";
+    $result = mysqli_query($conn, $sql_query);
+    $id ='test';
+    $image ='wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg';
+    while ($row = mysqli_fetch_array($result)) {
+        echo 
+        "<div class='col-md-6 col-lg-3 mb-4'>
+            <div class='card'>
+                <img src='https://image.tmdb.org/t/p/w500/",$row['cover'],"' class='card-img-top'>
+                <div class='card-body'>
+                    <h6 class='card-title'>",$row['title'],"</h6>
+                    <p class='card-text'>",$plot,"</p>
+                    <a href='https://www.themoviedb.org/movie/",$row['tmdb_id'],"'","class='btn btn-primary'>More Info</a>
+                    <button onclick=removeMovie(",$row['id'],") class='btn btn-primary'>Remove</button>
+                </div>
+            </div>
+        </div>";
+    };
+?>
