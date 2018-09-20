@@ -46,6 +46,7 @@
 
             <button type='submit' class='btn btn-primary'>Search</button>
         </form>
+    </div>
 
     <?php 
         if(isset($_POST['year']) || isset($_POST['movie-title'])) {
