@@ -19,12 +19,15 @@ function add() {
     var string = event.target.value;
     console.log(string);
 
+    $('#'+string).collapse('toggle');
+    setTimeout(function(){    $('#'+string).collapse('toggle');}, 2000);
+
     $.ajax({
         type: 'POST',
         url: 'sql/add_to_favorites.php',
         data: {id: string},
         success: function() {
-            console.log(this.data);
+            console.log('success');
         }, 
         error: function(xhr, textStatus, thrownError, data) {
         alert("Error: " + thrownError);}

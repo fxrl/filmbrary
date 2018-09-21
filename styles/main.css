@@ -19,7 +19,11 @@ div h2 {
 }
 
 .active {
-  color: red;
+  color: #0a0a0a;
+}
+
+.btn {
+  background: #0a0a0a;
 }
 
 /*# sourceMappingURL=main.css.map */

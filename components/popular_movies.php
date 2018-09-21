@@ -45,9 +45,27 @@
                 <img src='https://image.tmdb.org/t/p/w500/",$poster,"' class='card-img-top'>
                 <div class='card-body'>
                     <h6 class='card-title'>",$title,"</h6>
-                    <p class='card-text'>",$plot,"</p>
+                    <div id='accordion'>
+                        <div>
+                            <div id=heading'One>
+                                <h5 class='mb-0'>
+                                    <a class='btn btn-primary' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
+                                        Show Plot
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id='collapseOne' class='collapse' aria-labelledby='headingOne' data-parent='#accordion'>
+                            ",
+                            $plot,"
+                            </div>
+                        </div>
+                    </div>
                     <button onclick=add() value='",$id,"'","class='btn btn-primary'>Add to favorites</button>
                     <a href='https://www.themoviedb.org/movie/",$id,"'","class='btn btn-primary'>More Info</a>
+                    <div id='",$id,"'","class='collapse alert-success'>
+                        Movie added to Favorites
+                    </div>
                 </div>
             </div>
         </div>";
