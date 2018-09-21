@@ -30,15 +30,22 @@
             $director = (string)($person->getName());
         };
 
-        // get year
-
         // get production company
-        // $company = $movie->getProductionCompany();
-        //     echo '<pre>',
-        //         print_r($company),
-        //     '</pre>';
+        $test = getaccess($movie, 'productionCompanies');
+        $test1 = getaccess($test, 'data');
+        foreach ($test1 as $test3) {
+            $company = getaccess($test3, 'name');
+        }
+
+        // get year
+        $releaseYear = $movie->getReleaseDate()->format('Y');
 
         // get genre
+        $genreArray = array();
+        foreach ($movie->getGenres() as $genre) {
+            array_push($genreArray,$genre->getName());
+        }
+        $genres = json_encode($genreArray);
 
         // get cover
         $movieCovers = $repository->getImages($id)->filterPosters();
@@ -49,8 +56,18 @@
             break;
         }
 
+        //get plot description
+        $fullPlot = getaccess($movie, 'overview');
+
+            // limit to first sentence of plot
+            $regex = '/^(.*?)[.?!]\s/';
+            preg_match($regex, $fullPlot, $matches);
+
+            // if the description is only one sentence long use the fullPlot
+            $plot = $matches[0] != "" ? $matches[0] : $fullPlot;
+
         // insert into database
-        $sql = "INSERT INTO movies (title, tmdb_id, director, cover) VALUES ('$title', '$id', '$director', '$image')";
+        $sql = "INSERT INTO movies (title, tmdb_id, director, cover, genre, plot, production_company, year) VALUES ('$title', '$id', '$director', '$image', '$genres', '$plot', '$company', '$releaseYear')";
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

@@ -31,13 +31,15 @@
         }
 
         //get plot description
-        $plot = getaccess($popularMovie, 'overview');
+        $fullPlot = getaccess($popularMovie, 'overview');
 
-        // //get keywords
-        // $movie = $repository->load($id);
-        // foreach ($movie->getKeywords() as $keyword) {
-        //    echo '<br/>', $keyword->getName();
-        // }
+            // limit to first sentence of plot
+            $regex = '/^(.*?)[.?!]\s/';
+            preg_match($regex, $fullPlot, $matches);
+
+            // if the description is only one sentence long use the fullPlot
+            $plot = $matches[0] != "" ? $matches[0] : $fullPlot;
+
 
         echo 
         "<div class='col-md-6 col-lg-3 mb-4'>
@@ -49,20 +51,19 @@
                         <div>
                             <div id=heading'One>
                                 <h5 class='mb-0'>
-                                    <a class='btn btn-primary' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
-                                        Show Plot
+                                    <a class='btn btn-primary' data-toggle='collapse' data-target='#info-",$id,"'","' aria-expanded='true' aria-controls='collapseOne'>
+                                        More Info
                                     </a>
                                 </h5>
                             </div>
 
-                            <div id='collapseOne' class='collapse' aria-labelledby='headingOne' data-parent='#accordion'>
-                            ",
-                            $plot,"
+                            <div id='info-",$id,"'","class='collapse' aria-labelledby='headingOne' data-parent='#accordion'>
+                                ",$plot,"
+                                <a href='https://www.themoviedb.org/movie/",$id,"'","class='btn btn-primary'>Visit Website</a>
                             </div>
                         </div>
                     </div>
                     <button onclick=add() value='",$id,"'","class='btn btn-primary'>Add to favorites</button>
-                    <a href='https://www.themoviedb.org/movie/",$id,"'","class='btn btn-primary'>More Info</a>
                     <div id='",$id,"'","class='collapse alert-success'>
                         Movie added to Favorites
                     </div>
