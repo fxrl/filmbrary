@@ -1,8 +1,6 @@
 <?php 
     $sql_query = "SELECT * from movies";
     $result = mysqli_query($conn, $sql_query);
-    $id ='test';
-    $image ='wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg';
     while ($row = mysqli_fetch_array($result)) {
         echo 
         "<div class='col-md-6 col-lg-3 mb-4'>

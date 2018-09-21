@@ -32,14 +32,7 @@
     <div class='container'>
         <form class='form-inline mb-4' method="post">
             <label for="movie-title" class='mr-2'>Title</label>
-            <input name='movie_title' placeholder='Movie Title' class='form-control mr-4' id='movie-title'type="text">
-
-            <label for="select-genre" class='mr-2'>Genre</label>
-            <select id='select-genre' name="select-genre" class='form-control mr-4'>
-            <option>Action</option>
-            <option>Horror</option>
-            <option>Thriller</option>
-            </select>
+            <input name='movie-title' placeholder='Movie Title' class='form-control mr-4' id='movie-title' type="text">
 
             <label for="year" class='mr-2'>Year</label>
             <input name='year' id='year'type="number" placeholder='Year' class='form-control mr-4'>
@@ -48,36 +41,24 @@
         </form>
     </div>
 
-    <?php 
-        if(isset($_POST['year']) || isset($_POST['movie-title'])) {
-
-            // form variables
-            $year = $_POST['year'];
-            $movie_title = $_POST['movie-title'];
-
-            // create query conditons
-            $search = 'year='.$year;
-
-            $sql_query = "SELECT title from movies where $search";
-            $result = mysqli_query($conn, $sql_query);
-            while ($row = mysqli_fetch_array($result)) {
-                printf(
-                    '<li>
-                        %s
-                    </li>'
-                    ,$row[0]
-                );
-            } 
-        }
-    ?>
-
     <div class='container'>
         <div class='row'>
             <?php
-                include 'components/favorite_movies.php'
+                include 'sql/search_db.php'
             ?>
         </div>
     </div>
+
+    <?php if ($displayMovies) : ?>
+        <div class='container'>
+            <div class='row'>
+                <?php
+                    include 'components/favorite_movies.php'
+                ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
     
     <?php
         include 'components/footer.php'
