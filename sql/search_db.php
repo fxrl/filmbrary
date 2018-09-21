@@ -10,8 +10,8 @@
         $movie_title = $_POST['movie-title'];
 
         // create query conditons
-        $search = '"'.$_POST['movie-title'].'"';
-        $sql_query = 'SELECT * from movies where title='.$search;
+        $search = '"%'.$_POST['movie-title'].'%"';
+        $sql_query = 'SELECT * FROM movies WHERE title LIKE '.$search;
 
         $result = mysqli_query($conn, $sql_query);
         while ($row = mysqli_fetch_array($result)) {
