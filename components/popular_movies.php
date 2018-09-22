@@ -30,6 +30,22 @@
             break;
         }
 
+        // get production company
+        $test = getaccess($popularMovie, 'productionCompanies');
+        $test1 = getaccess($test, 'data');
+        foreach ($test1 as $test3) {
+            $company = getaccess($test3, 'name');
+        }
+
+        // get year
+        $releaseYear = $popularMovie->getReleaseDate()->format('Y');
+
+        // get genre
+        $genreArray = array();
+        foreach ($popularMovie->getGenres() as $genre) {
+            array_push($genreArray,$genre->getName());
+        }
+
         //get plot description
         $fullPlot = getaccess($popularMovie, 'overview');
 
@@ -46,7 +62,7 @@
             <div class='card'>
                 <img src='https://image.tmdb.org/t/p/w500/",$poster,"' class='card-img-top'>
                 <div class='card-body'>
-                    <h6 class='card-title'>",$title,"</h6>
+                    <h6 class='card-title'>",$title," | ",$releaseYear,"</h6>
                     <div id='accordion'>
                         <div>
                             <div id=heading'One>
