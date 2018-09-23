@@ -1,0 +1,21 @@
+@import "variables";
+
+.navbar {
+    // background: $light;
+
+    a {
+        color: $dark;
+    }
+
+    a:hover {
+        color: $primary;
+    }
+    
+    button {
+        // background: $secondary;
+    }
+
+    .navbar-toggler-icon {
+        // border: $light;
+    }
+}

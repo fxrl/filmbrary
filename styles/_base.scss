@@ -1,13 +1,71 @@
-@import "../vendor/twbs/bootstrap/scss/bootstrap";
+@import 'variables';
 
-$small: 1rem;
-$medium: 1.5rem;
-$large: 2rem;
-$extralarge: 2.5rem;
+// body
+body {
+    background: $light;
+}
 
-$heading: 'Oswald', sans-serif;
-$subheading: 'Oswald', sans-serif;
-$body: 'Open Sans', sans-serif;
+//card
+.card {
+    color: $dark;
 
-$primary: rgba(10,10,10,1);
-$secondary: blue;
+    .badge-secondary {
+        background: $primary;
+    }
+    .badge-primary {
+        background: $secondary;
+    }
+    .badge-info {
+        background: $dark;
+    }
+}
+
+
+// text
+h1,h2,h3,h4 {
+    font-family: $heading;
+}
+
+p {
+    font-family: $body;
+}
+
+::selection {
+    background: $primary;
+}
+
+
+// button 
+.btn {
+    background: $primary;
+    border-color: $light;
+}
+
+.btn-group {
+    border: $green;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: $primary;
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: none;
+
+}
+
+.btn:hover {
+    background: $secondary;
+    border-color: $light;
+}
+
+// jumbotron
+.jumbotron {
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(40,40,40,0.5)),url('../img/fancycrave-440143-unsplash.jpg');
+    background-size: cover;
+    color: $light;
+}

@@ -1,0 +1,24 @@
+@import "variables";
+
+h3 {
+    margin-bottom: $medium;
+}
+
+input, select, .btn {
+    margin-bottom: $small;
+}
+
+.search {
+    padding: $small;
+}
+
+@media (min-width: 576px) {
+
+    input, select {
+        margin-right: $small;
+    }
+
+    .search .btn {
+        margin-right: $small;
+    }
+}

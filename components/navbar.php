@@ -2,7 +2,7 @@
     include 'config.php'
 ?>
 
-<nav class='navbar navbar-expand-md navbar-light bg-light'>
+<nav class='navbar navbar-expand-md navbar-light'>
         <a href="./index.php" class="navbar-brand <?php echo($current_page == 'index.php' || $current_page == '') ? 'active' : NULL?>">
             Filmbrary
         </a>

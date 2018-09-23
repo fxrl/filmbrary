@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Filmbrary</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -19,7 +18,7 @@
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
             <h1 class='display-4'>Browse Movies</h1>
-            <p class='lead'>Ullamco incididunt reprehenderit culpa excepteur.</p>
+            <p class='lead'>Take a look what is popular right now.</p>
         </div>
     </div>
 

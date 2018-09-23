@@ -1,0 +1,19 @@
+@import "variables";
+
+.hero {
+    background-image: url(../img/fancycrave-440143-unsplash.jpg);
+    height: 100vh;
+    background-size: cover;
+    text-align: center;
+    position: relative; 
+
+    h1 {
+        font-size: $extralarge;
+    }
+}
+
+.hero--content {
+    position: absolute;
+    top: 30%;
+    color: $light;
+}

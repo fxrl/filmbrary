@@ -34,3 +34,7 @@ function add() {
     });
 };
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+

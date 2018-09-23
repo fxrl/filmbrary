@@ -19,7 +19,7 @@
     foreach ($genres as $genre) {
         $name = accessProtected($genre,'name');
         // $id = accessProtected($genre,'id');
-        echo '<option>',
+        echo '<option placeholder="Select Genre">',
                 $name,
             '</option>';
     };
