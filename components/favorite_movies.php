@@ -12,30 +12,39 @@
                     <h6 class='card-title'>",$row['title'],"</h6>
                     <div id='accordion'>
                         <div>
-                            <div id=heading'One>
-                                <h5 class='mb-0'>
-                                    <a class='btn btn-primary' data-toggle='collapse' data-target='#info-",$row['tmdb_id'],"'","' aria-expanded='true' aria-controls='collapseOne'>
-                                        More Info
-                                    </a>
-                                </h5>
+                        <div id=heading'One>
+                            <div class='btn-group' role='group' aria-label='movie-card-button'>
+                                <button class='btn btn-primary collapsed' data-toggle='collapse' data-target='#info-",$row['tmdb_id'],"' aria-expanded='false' aria-controls='collapseOne'>More Info</button> 
+                                <a href='https://www.themoviedb.org/movie/",$row['tmdb_id'],"'","class='btn btn-primary'>Website</a>
+                                <button onclick='removeMovie(",$row['id'],")' value='",$row['tmdb_id'],"'","class='btn btn-primary' data-toggle='tooltip' data-placement='bottom' title='Remove from Favorites'>-</button>           
                             </div>
 
                             <div id='info-",$row['tmdb_id'],"'","class='collapse' aria-labelledby='headingOne' data-parent='#accordion'>
-                                ",$row['plot'];
+                                <p>
+                                ",$row['plot'],"
+                                </p>
+                                <span class='badge badge-secondary' data-toggle='tooltip' data-placement='bottom' title='Released'>",$row['year'],"</span>
+                                <span class='badge badge-info' data-toggle='tooltip' data-placement='bottom' title='Director'>",$row['director'],"</span>
+                                <span class='badge badge-info' data-toggle='tooltip' data-placement='bottom' title='Production Company'>",$row['production_company'],"</span>";
 
                                 foreach ($decoded_genres as $genre) {
-                                    echo '<br>',$genre;
-                                };
+                                    echo "
+                                    <span class='badge badge-primary' data-toggle='tooltip' data-placement='bottom' title='Genre'>
+                                        ",$genre,"
+                                    </span>"
+                                ;
+                            };
 
 
-        echo
-                                "<a href='https://www.themoviedb.org/movie/",$row['tmdb_id'],"'","class='btn btn-primary'>Visit Website</a>
+                            echo "      </div>
                             </div>
                         </div>
+                        <div id='",$id,"'","class='collapse alert-success'>
+                            Movie added to Favorites
+                        </div>
                     </div>
-                    <button onclick=removeMovie(",$row['id'],") class='btn btn-primary'>Remove</button>
+                    </div>
                 </div>
-            </div>
-        </div>";
+            </div>";
     };
 ?>

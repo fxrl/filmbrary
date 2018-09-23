@@ -18,7 +18,7 @@
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
             <h1 class='display-4'>Browse Movies</h1>
-            <p class='lead'>Take a look what is popular right now.</p>
+            <p class='lead'>Take a look of what is popular right now.</p>
         </div>
     </div>
 

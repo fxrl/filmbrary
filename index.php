@@ -17,8 +17,15 @@
     ?>
 
     <div class="container-fluid hero">
+        <div class='video-container'>
+            <div class="overlay"></div>
+            <video autoplay="autoplay" muted="muted" loop="loop">
+                <source src="img/projector.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="col-lg-12 hero--content">
             <h1>Filmbrary</h1>
+            <hr>
             <p>Browse movies and create a collection of your favorite flicks.</p>
             <a href="browse.php" class="btn btn-primary" >Browse Movies</a>
         </div>

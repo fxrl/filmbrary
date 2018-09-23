@@ -8301,20 +8301,55 @@ p {
 }
 
 .hero {
-  background-image: url(../img/fancycrave-440143-unsplash.jpg);
   height: 100vh;
-  background-size: cover;
   text-align: center;
   position: relative;
+  padding: 0;
 }
 .hero h1 {
   font-size: 5rem;
+}
+.hero .video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero .video-container video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(#3e1512, #362104);
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .hero--content {
   position: absolute;
   top: 30%;
   color: #FFF9F7;
+  z-index: 2;
+}
+.hero--content hr {
+  border-width: 5px;
+  width: 30vw;
+  border-color: #B53D34;
+  border-radius: 7px;
 }
 
 .navbar a {
@@ -8325,6 +8360,7 @@ p {
 }
 h3 {
   margin-bottom: 1.5rem;
+  color: #3D3935;
 }
 
 input, select, .btn {
