@@ -28,7 +28,7 @@ echo "Hallo User: ".$userid;
 
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
-            <h1 class='display-4'>Admin</h1>
+            <h1 class='display-4'>Profile</h1>
             <p class='lead'>Manage your account</p>
         </div>
     </div>
@@ -69,7 +69,7 @@ echo "Hallo User: ".$userid;
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["fileToUpload"]["size"] > 1000000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }

@@ -36,7 +36,7 @@
                     $result = mysqli_query($conn, $sql); 
                     while ($row = mysqli_fetch_array($result)) {
                         $file = $row['file_name'];
-                        $url = 'img/carousel/' .$file;
+                        $url = 'img/carousel/' . $file;
                         echo "<div class='carousel-item' style='background-image: url($url)'></div>";                    }
                 ?>
             </div>

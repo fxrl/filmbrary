@@ -4,27 +4,30 @@ $pdo = new PDO('mysql:host=localhost;dbname=filmbrary', 'root', 'root');
  
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
+    $passwort = $_POST['password'];
     
+    //secured by sending sql and user input seperate
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    // execute interpretes variable as string
     $result = $statement->execute(array('email' => $email));
     $user = $statement->fetch();
         
-    //Überprüfung des Passworts
+    //check the pw
     if ($user !== false && password_verify($passwort, $user['password'])) {
         $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich. Weiter zu <a href="admin.php">internen Bereich</a>');
+        // redirect to admin.php
+        header("Location: admin.php");
     } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+        $errorMessage = "Mail Address or password invalid";
     }
     
 }
 ?>
 
 <?php 
-    if(isset($errorMessage)) {
-        echo $errorMessage;
-    }
+  if(isset($errorMessage)) {
+      echo $errorMessage;
+  }
 ?>
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
@@ -38,12 +41,12 @@ if(isset($_GET['login'])) {
       </div>
       <div class="modal-body">
         <form action="?login=1" method="post">
-            E-Mail:<br>
-            <input type="email" size="40" maxlength="250" name="email"><br><br>
+            <label for="email">Email</label><br>
+            <input type="email" size="40" maxlength="250" name="email"><br>
     
-            Dein Passwort:<br>
-            <input type="password" size="40"  maxlength="250" name="passwort"><br>
-            <input type="submit" value="Abschicken">
+            <label for="password">Password</label><br>
+            <input type="password" size="40"  maxlength="250" name="password"><br>
+            <button class="btn btn-primary" type="submit">Log In</button>
         </form>
       </div>
       <div class="modal-footer">

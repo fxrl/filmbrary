@@ -56,52 +56,39 @@ if(isset($_GET['register'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Filmbrary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
-    <script src="vendor/components/jquery/jquery.min.js"></script>
-    <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <?php 
-        include 'components/navbar.php';
-    ?>
-
-    <div class='jumbotron jumbotron-fluid'>
-        <div class='container'>
-            <h1 class='display-4'>Register</h1>
-            <p class='lead'>Create your account and start your collection</p>
-        </div>
-    </div>
-
-    <div class='form container-fluid'>
         <?php
             if($showFormular) {
         ?>
+
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="?register=1" method="post">
+                    E-Mail:<br>
+                    <input type="email" size="40" maxlength="250" name="email"><br><br>
+                    Dein Passwort:<br>
+                    <input type="password" size="40"  maxlength="250" name="passwort"><br>
+                    Passwort wiederholen:<br>
+                    <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+                    <input type="submit" value="Abschicken">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
  
-        <form action="?register=1" method="post">
-            E-Mail:<br>
-            <input type="email" size="40" maxlength="250" name="email"><br><br>
-            Dein Passwort:<br>
-            <input type="password" size="40"  maxlength="250" name="passwort"><br>
-            Passwort wiederholen:<br>
-            <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
-            <input type="submit" value="Abschicken">
-        </form>
-        
+ 
+
         <?php
         } //Ende von if($showFormular)
         ?>
-    </div>
-
-    <?php 
-        include 'components/footer.php';
-    ?>
-
-</body>
-</html>
