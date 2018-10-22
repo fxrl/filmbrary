@@ -43,9 +43,19 @@
         // get genre
         $genreArray = array();
         foreach ($movie->getGenres() as $genre) {
-            array_push($genreArray,$genre->getName());
+            $genreName = $genre->getID();
+
+            $sqlGenre = "INSERT INTO genre_movies (movieID, genreID) VALUES ('$id', '$genreName')";
+
+            if ($conn->query($sqlGenre) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sqlGenre . "<br>" . $conn->error;
+            };
+            // array_push($genreArray,$genre->getName());
         }
-        $genres = json_encode($genreArray);
+
+        // $genres = json_encode($genreArray);
 
         // get cover
         $movieCovers = $repository->getImages($id)->filterPosters();
@@ -67,7 +77,7 @@
             $plot = $matches[0] != "" ? $matches[0] : $fullPlot;
 
         // insert into database
-        $sql = "INSERT INTO movies (title, tmdb_id, director, cover, genre, plot, production_company, year) VALUES ('$title', '$id', '$director', '$image', '$genres', '$plot', '$company', '$releaseYear')";
+        $sql = "INSERT INTO movies (title, tmdb_id, director, cover, plot, production_company, year) VALUES ('$title', '$id', '$director', '$image', '$plot', '$company', '$releaseYear')";
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

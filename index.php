@@ -16,24 +16,40 @@
         include './components/navbar.php'
     ?>
 
-    <div class="container-fluid hero">
-        <div class='video-container'>
-            <div class="overlay"></div>
-            <video autoplay="autoplay" muted="muted" loop="loop">
-                <source src="img/projector.mp4" type="video/mp4">
-            </video>
+    <!-- Carousel Background -->
+
+    <header>
+        <div class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="overlay"></div>
+                <div class="col-lg-12 hero--content">
+                    <h1>Filmbrary</h1>
+                    <hr>
+                    <p>Browse movies and create a collection of your favorite flicks.</p>
+                    <a href="browse.php" class="btn btn-primary" >Browse Movies</a>
+                </div>
+
+                <?php 
+                    include 'components/database.php';
+
+                    $sql = "SELECT file_name FROM files";
+                    $result = mysqli_query($conn, $sql); 
+                    while ($row = mysqli_fetch_array($result)) {
+                        $file = $row['file_name'];
+                        $url = 'img/carousel/' .$file;
+                        echo "<div class='carousel-item' style='background-image: url($url)'></div>";                    }
+                ?>
+            </div>
         </div>
-        <div class="col-lg-12 hero--content">
-            <h1>Filmbrary</h1>
-            <hr>
-            <p>Browse movies and create a collection of your favorite flicks.</p>
-            <a href="browse.php" class="btn btn-primary" >Browse Movies</a>
-        </div>
-    </div>
+    </header>
 
     <?php
         include './components/footer.php'
     ?>
-
+    
+    <script>
+        // make first slide element active
+        $('.carousel-item').first().addClass('active');
+    </script>
 </body>
 </html>

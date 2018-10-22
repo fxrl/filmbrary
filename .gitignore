@@ -1,0 +1,8 @@
+playground/
+node_modules/
+vendor/
+Archiv.zip
+*.lock
+old-index.php
+
+

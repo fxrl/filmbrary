@@ -1,10 +1,11 @@
 <?php 
-    $sql_query = "SELECT * from movies";
+    // $sql_query = "SELECT * from movies";
+    $sql_query = "SELECT title, director, year, production_company, plot, cover, GROUP_CONCAT(genre) as genre FROM movies RIGHT JOIN genre_movies ON movies.tmdb_id = genre_movies.movieID RIGHT JOIN genres ON genre_movies.`genreID` = genres.id  GROUP BY title";
     $result = mysqli_query($conn, $sql_query);
     while ($row = mysqli_fetch_array($result)) {
-        $decoded_genres =json_decode($row['genre']);
+        // $decoded_genres =json_decode($row['genre']);
 
-        echo 
+        echo  
         "<div class='col-md-6 col-lg-3 mb-4'>
             <div class='card'>
             <img src='https://image.tmdb.org/t/p/w500/",$row['cover'],"' class='card-img-top'>
@@ -27,13 +28,13 @@
                                 <span class='badge badge-info' data-toggle='tooltip' data-placement='bottom' title='Director'>",$row['director'],"</span>
                                 <span class='badge badge-info' data-toggle='tooltip' data-placement='bottom' title='Production Company'>",$row['production_company'],"</span>";
 
-                                foreach ($decoded_genres as $genre) {
-                                    echo "
-                                    <span class='badge badge-primary' data-toggle='tooltip' data-placement='bottom' title='Genre'>
-                                        ",$genre,"
-                                    </span>"
-                                ;
-                            };
+                            //     foreach ($decoded_genres as $genre) {
+                            //         echo "
+                            //         <span class='badge badge-primary' data-toggle='tooltip' data-placement='bottom' title='Genre'>
+                            //             ",$genre,"
+                            //         </span>"
+                            //     ;
+                            // };
 
 
                             echo "      </div>

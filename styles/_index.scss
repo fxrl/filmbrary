@@ -50,6 +50,10 @@
     color: $light;
     z-index: 2;
 
+    .btn {
+        border: none;
+    }
+
     hr {
         border-width: 5px;
         width: 30vw;
