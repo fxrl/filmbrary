@@ -4,5 +4,5 @@ vendor/
 Archiv.zip
 *.lock
 old-index.php
-
+.DS_Store
 
