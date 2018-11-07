@@ -15,9 +15,12 @@
             <a href="./profile.php" class="nav-item nav-link <?php echo($current_page == 'profile.php' || $current_page == '') ? 'active' : NULL ?>">My Movies</a>
             <a href="./about.php" class="nav-item nav-link <?php echo($current_page == 'about.php' || $current_page == '') ? 'active' : NULL ?>">About</a>
             <a href="./contact.php" class="nav-item nav-link <?php echo($current_page == 'contact.php' || $current_page == '') ? 'active' : NULL ?>">Contact</a>
+            
+            <!-- display profile menu item only for logged in users -->
             <?php
-                if(isset($_SESSION['userid'])) {
-                    echo "<a href='./admin.php' class='nav-item nav-link'>Profile</a>";
+                session_start();
+                if($_SESSION['userType'] === 'admin') {
+                    echo "<a href='./admin.php' class='nav-item nav-link'>Admin Panel</a>";
                 }
             ?>
             <button data-toggle="modal" data-target="#loginModal" class="btn btn-primary" type="button">Login</button> 

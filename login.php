@@ -4,17 +4,19 @@ $pdo = new PDO('mysql:host=localhost;dbname=filmbrary', 'root', 'root');
  
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
-    $passwort = $_POST['password'];
+    $password = $_POST['password'];
     
     //secured by sending sql and user input seperate
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    // execute interpretes variable as string
+    // execute interpretes variable as string to prevent sql injection and xss
     $result = $statement->execute(array('email' => $email));
     $user = $statement->fetch();
         
     //check the pw
-    if ($user !== false && password_verify($passwort, $user['password'])) {
+    if ($user !== false && password_verify($password, $user['password'])) {
         $_SESSION['userid'] = $user['id'];
+        $_SESSION['username'] = $user['user_name'];
+        $_SESSION['userType'] = $user['user_type'];
         // redirect to admin.php
         header("Location: admin.php");
     } else {

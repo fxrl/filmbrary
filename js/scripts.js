@@ -34,6 +34,22 @@ function add() {
     });
 };
 
+function deleteUser(id) {
+    var user_id = id;
+    $.ajax({
+        url: 'sql/delete_user.php',
+        type: 'POST',
+        data: {user_id: user_id},
+        success: function() {
+            console.log(this.data);
+        }, 
+        error: function(xhr, textStatus, thrownError, data) {
+            alert("Error: " + thrownError);
+        }
+    });
+
+};
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })

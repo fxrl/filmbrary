@@ -1,13 +1,5 @@
-<?php
-session_start();
-if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
- 
-//Abfrage der Nutzer ID vom Login
-$userid = $_SESSION['userid'];
- 
-echo "Hallo User: ".$userid;
+<?php 
+    include 'components/check_login.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,74 +26,87 @@ echo "Hallo User: ".$userid;
     </div>
 
     <div class='container'>
-        <form enctype="multipart/form-data" action="<?php echo $SERVER_['PHP_SELF']; ?>" method="POST">
-            <div class="form-group">
-                <label for="fileToUpload">Select Picture</label>
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <small>Maximum allowed filesize: 1.5mb</small>
+        <div class='row'>
+            <div class='col'>
+                <h3>Hi <?php echo $_SESSION['username']?></h3>
+                <p>
+                    Manage your account and upload fresh pictures for your personalised filmbrary experience.
+                </p>
+                <button class='btn btn-primary'>Log Out</button>
+                <button class='btn btn-primary'>Delete Account</button>
             </div>
-            <input type="submit" value="Upload Image" name="submit">        
+            <div class='col'>
+                <h3>Upload Slide</h3>
+                <h6>You can add custom pictures to the slider on the startpage.</h6>
+                <form class='my-4' enctype="multipart/form-data" action="<?php echo $SERVER_['PHP_SELF']; ?>" method="POST">
+                    <div class="form-group">
+                        <label for="fileToUpload">Select Picture</label><br>
+                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                        <small>Maximum allowed filesize: 1.5mb</small>
+                    </div>
+                    <input type="submit" value="Upload Image" name="submit">        
+                </form>
+                <?php include 'components/file_upload.php'?>
+            </div>
+        </div>
 
-        </form>
+        <div class='row'>
+            <div class='col'>
+                <h3>Edit Users</h3>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">User Type</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Delete User</th>
+                        <th scope="col">Edit User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            include 'sql/user_table.php';
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class='col'>
+                <h3>Create New User</h3>
+                <form action="">
+                    <div class='form-group'>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" placeholder='John Doe'>
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder='john@doe.com'>                    
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="password">Password</label>
+                        <input type="text" name='password'>                    
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="userType">User Type</label>
+                        <select name="userType">
+                            <option value="admin">Admin</option>
+                            <option value="browser">Browser</option>
+                            <option value="moderator">Moderator</option>
+                        </select>
+                    </div>
+                    <button class='btn btn-primary'type='submit'>Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <?php
-        include 'components/database.php';
-
-        $target_dir = "img/carousel/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
-        }
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-        // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 1000000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-        // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-                // write filename and type to database
-                $name = $_FILES['fileToUpload']['name'];
-                $type = $_FILES['fileToUpload']['type'];
-
-                $sql = "INSERT INTO files (file_name, type) VALUES ('$name', '$type')";
-                mysqli_query($conn, $sql);
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
-    ?>
-
 
     <?php 
         include 'components/footer.php';
     ?>
-
+    <script src='js/scripts.js'></script>
 </body>
 </html>
