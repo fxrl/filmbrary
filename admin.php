@@ -62,7 +62,6 @@
                         <th scope="col">User Type</th>
                         <th scope="col">User Name</th>
                         <th scope="col">Delete User</th>
-                        <th scope="col">Edit User</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,9 +71,12 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class='row'>
             <div class='col'>
                 <h3>Create New User</h3>
-                <form action="">
+                <form method='POST' action="sql/create_user.php">
                     <div class='form-group'>
                         <label for="username">Username</label>
                         <input type="text" name="username" placeholder='John Doe'>
@@ -98,15 +100,45 @@
                             <option value="moderator">Moderator</option>
                         </select>
                     </div>
-                    <button class='btn btn-primary'type='submit'>Submit</button>
+                    <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
+                </form>
+            </div>
+            <div class='col'>
+                <h3>Edit User</h3>
+                <form method='post' action="sql/editUser.php">
+                    <div class='form-group'>
+                        <label for="user">Select User ID</label>
+                        <select onchange="editUser(this.value)" name="user" id="selectUser">
+                            <option value="none">Please select</option>
+                            <?php include 'sql/getUsers.php' ?>
+                        </select>
+                    </div>
+                    <div class='form-group'>
+                        <label for="name">User Name</label>
+                        <input name='name' type="text" placeholder='John Doe'>
+                    </div>
+                    <div class='form-group'>
+                        <label for="userType">User Type</label>
+                        <select name='userType'>
+                            <option value="admin">Admin</option>
+                            <option value="moderator">Moderator</option>
+                            <option value="browser">Browser</option>
+                        </select>
+                    </div>
+                    <div class='form-group'>
+                        <label for="email">User Type</label>
+                        <input name='email' placeholder='john@doe.com'>
+                    </div>
+                    <button type='submit'>Save Changes</button>
                 </form>
             </div>
         </div>
     </div>
-
+    <script src='js/scripts.js'></script>
+    
     <?php 
         include 'components/footer.php';
     ?>
-    <script src='js/scripts.js'></script>
+
 </body>
 </html>

@@ -47,10 +47,26 @@ function deleteUser(id) {
             alert("Error: " + thrownError);
         }
     });
-
+    location.reload();
 };
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
+
+
+  function editUser(e) {
+      const id = e;
+      $.ajax({
+        url: 'sql/editUser.php',
+        type: 'POST',
+        data: {user_id: id},
+        success: function() {
+            console.log(this.data);
+        }, 
+        error: function(xhr, textStatus, thrownError, data) {
+            alert("Error: " + thrownError);
+        }
+    });
+  }
 
