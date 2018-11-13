@@ -1,5 +1,5 @@
 <?php 
-    include 'components/check_login.php';
+    include 'components/check_login_mod.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstable.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 </head>
 <body>
     <?php 
@@ -20,8 +23,8 @@
 
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
-            <h1 class='display-4'>Profile</h1>
-            <p class='lead'>Manage your account</p>
+            <h1 class='display-4'>Moderator Control Panel</h1>
+            <p class='lead'>Manage movies</p>
         </div>
     </div>
 
@@ -70,8 +73,8 @@
 
         <div class='row'>
             <div class='col'>
-                <h3>Edit Users</h3>
-                <table class="table">
+                <h3>Edit Movies</h3>
+                <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditableMovies">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">Title</th>

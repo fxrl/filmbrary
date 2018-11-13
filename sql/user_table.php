@@ -10,7 +10,6 @@
                 <td>" . $row['created_at'] . "</td>
                 <td>" .$row['user_type']. "</td>
                 <td>" .$row['user_name']. "</td>
-                <td> <button class='btn btn-primary text-center' onclick='deleteUser(" . $row['id'] . ")'>X</button> </td>
             </tr>";
     }
 ?>

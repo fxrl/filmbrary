@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstable.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 </head>
 <body>
     <?php 
@@ -34,6 +37,35 @@
                 </p>
                 <button class='btn btn-primary'>Log Out</button>
                 <button class='btn btn-primary'>Delete Account</button>
+                <div class='my-4'>
+                    <h3>Create New User</h3>
+                    <form method='POST' action="sql/create_user.php">
+                        <div class='form-group'>
+                            <label for="username">Username</label>
+                            <input type="text" name="username" placeholder='John Doe'>
+                        </div>
+
+                        <div class='form-group'>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" placeholder='john@doe.com'>                    
+                        </div>
+
+                        <div class='form-group'>
+                            <label for="password">Password</label>
+                            <input type="password" name='password'>                    
+                        </div>
+
+                        <div class='form-group'>
+                            <label for="userType">User Type</label>
+                            <select name="userType">
+                                <option value="admin">Admin</option>
+                                <option value="browser">Browser</option>
+                                <option value="moderator">Moderator</option>
+                            </select>
+                        </div>
+                        <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
+                    </form>
+                </div>
             </div>
             <div class='col'>
                 <h3>Upload Slide</h3>
@@ -53,15 +85,14 @@
         <div class='row'>
             <div class='col'>
                 <h3>Edit Users</h3>
-                <table class="table">
+                <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditable">
                     <thead class="thead-dark">
                         <tr>
-                        <th scope="col">User ID</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Created At</th>
-                        <th scope="col">User Type</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Delete User</th>
+                            <th scope="col">User ID</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">User Type</th>
+                            <th scope="col">User Name</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,70 +106,13 @@
 
         <div class='row'>
             <div class='col'>
-                <h3>Create New User</h3>
-                <form method='POST' action="sql/create_user.php">
-                    <div class='form-group'>
-                        <label for="username">Username</label>
-                        <input type="text" name="username" placeholder='John Doe'>
-                    </div>
 
-                    <div class='form-group'>
-                        <label for="email">Email</label>
-                        <input type="email" name="email" placeholder='john@doe.com'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="password">Password</label>
-                        <input type="text" name='password'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="userType">User Type</label>
-                        <select name="userType">
-                            <option value="admin">Admin</option>
-                            <option value="browser">Browser</option>
-                            <option value="moderator">Moderator</option>
-                        </select>
-                    </div>
-                    <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
-                </form>
-            </div>
-            <div class='col'>
-                <h3>Edit User</h3>
-                <form method='post' action="sql/editUser.php">
-                    <div class='form-group'>
-                        <label for="user">Select User ID</label>
-                        <select onchange="editUser(this.value)" name="user" id="selectUser">
-                            <option value="none">Please select</option>
-                            <?php include 'sql/getUsers.php' ?>
-                        </select>
-                    </div>
-                    <div class='form-group'>
-                        <label for="name">User Name</label>
-                        <input name='name' type="text" placeholder='John Doe'>
-                    </div>
-                    <div class='form-group'>
-                        <label for="userType">User Type</label>
-                        <select name='userType'>
-                            <option value="admin">Admin</option>
-                            <option value="moderator">Moderator</option>
-                            <option value="browser">Browser</option>
-                        </select>
-                    </div>
-                    <div class='form-group'>
-                        <label for="email">User Type</label>
-                        <input name='email' placeholder='john@doe.com'>
-                    </div>
-                    <button type='submit'>Save Changes</button>
-                </form>
             </div>
         </div>
     </div>
     <script src='js/scripts.js'></script>
-    
-    <?php 
-        include 'components/footer.php';
-    ?>
+
+    <?php include 'components/footer.php'; ?>
 
 </body>
 </html>

@@ -18,7 +18,14 @@ if(isset($_GET['login'])) {
         $_SESSION['username'] = $user['user_name'];
         $_SESSION['userType'] = $user['user_type'];
         // redirect to admin.php
-        header("Location: admin.php");
+        if ($_SESSION['userType'] === 'admin') {
+          header("Location: admin.php");
+        } else if ($_SESSION['userType'] === 'browser') {
+          header("Location: profile.php");
+        } else if ($_SESSION['userType'] === 'moderator') {
+          header("Location: moderator.php");
+        }
+
     } else {
         $errorMessage = "Mail Address or password invalid";
     }

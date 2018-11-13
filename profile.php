@@ -14,7 +14,7 @@
     <?php 
         include 'components/database.php';
         include 'components/navbar.php';
-        include 'components/check_login.php';
+        include 'components/check_login_browser.php';
     ?>
 
     <div class='jumbotron jumbotron-fluid'>

@@ -21,10 +21,23 @@
                 session_start();
                 if($_SESSION['userType'] === 'admin') {
                     echo "<a href='./admin.php' class='nav-item nav-link'>Admin Panel</a>";
+                    echo "<a href='./moderator.php' class='nav-item nav-link'>Moderator Panel</a>";
+                } else if($_SESSION['userType'] === 'moderator') {
+                        echo "<a href='./moderator.php' class='nav-item nav-link'>Moderator Panel</a>";
+                }
+                // display login and register or logout button
+                if(!$_SESSION['userType']) {
+                    echo "<button data-toggle='modal' data-target='#loginModal' class='btn btn-primary' type='button'>Login</button>
+                    <button data-toggle='modal' data-target='#registerModal' class='btn btn-primary' type='button'>Register</button>";
+                } else if($_SESSION['userType']) {
+                    echo "<a class='btn btn-primary' href='?logout=1'>Logout</a>";
+                }
+                // logout and redirect to homepage
+                if($_GET['logout']==1) {
+                    session_destroy();
+                    header("Refresh:0; url=index.php");
                 }
             ?>
-            <button data-toggle="modal" data-target="#loginModal" class="btn btn-primary" type="button">Login</button> 
-            <button data-toggle="modal" data-target="#registerModal" class="btn btn-primary" type="button">Register</button> 
         </div>
     </div> 
 </nav>
