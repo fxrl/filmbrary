@@ -10,7 +10,7 @@
             `email` = '$mail',
             `user_type` = '$type',
             `user_name` = '$name' 
-        WHERE `id` = $id;";
+        WHERE `id` = $id";
         mysqli_query($conn, $sql_query);
     };
 ?>

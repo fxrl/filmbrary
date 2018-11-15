@@ -38,6 +38,7 @@
                 <button class='btn btn-primary'>Log Out</button>
                 <button class='btn btn-primary'>Delete Account</button>
             </div>
+            <!-- create new movie -->
             <div class='col'>
                 <h3>Create New Movie</h3>
                 <form method='POST' action="sql/create_movie.php">
@@ -77,6 +78,7 @@
                 <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditableMovies">
                     <thead class="thead-dark">
                         <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Title</th>
                         <th scope="col">TMDB ID</th>
                         <th scope="col">Director</th>

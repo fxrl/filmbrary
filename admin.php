@@ -37,6 +37,8 @@
                 </p>
                 <button class='btn btn-primary'>Log Out</button>
                 <button class='btn btn-primary'>Delete Account</button>
+                
+                <!-- create new user -->
                 <div class='my-4'>
                     <h3>Create New User</h3>
                     <form method='POST' action="sql/create_user.php">
@@ -68,8 +70,10 @@
                 </div>
             </div>
             <div class='col'>
+                <!-- upload new slides -->
                 <h3>Upload Slide</h3>
                 <h6>You can add custom pictures to the slider on the startpage.</h6>
+                <!-- run form on same page with action attribute -->
                 <form class='my-4' enctype="multipart/form-data" action="<?php echo $SERVER_['PHP_SELF']; ?>" method="POST">
                     <div class="form-group">
                         <label for="fileToUpload">Select Picture</label><br>
@@ -78,12 +82,14 @@
                     </div>
                     <input type="submit" value="Upload Image" name="submit">        
                 </form>
+                <!-- upload script -->
                 <?php include 'components/file_upload.php'?>
             </div>
         </div>
 
         <div class='row'>
             <div class='col'>
+                <!-- edit users -->
                 <h3>Edit Users</h3>
                 <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditable">
                     <thead class="thead-dark">
@@ -101,12 +107,6 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col'>
-
             </div>
         </div>
     </div>

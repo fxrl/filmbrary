@@ -5,6 +5,7 @@
     while ($row = mysqli_fetch_array($results)) {
         echo 
             "<tr>
+                <td>" . $row['id'] . "</td>
                 <td scope='row'>" . $row['title'] . "</td>
                 <td>" . $row['tmdb_id'] . "</td>
                 <td>" . $row['director'] . "</td>
