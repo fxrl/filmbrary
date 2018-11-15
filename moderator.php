@@ -67,6 +67,22 @@
                         <input type="text" name='plot'>                    
                     </div>
 
+                    <div class='form-group'>
+                        <label for="genre">Genre</label>
+                        <select name="genre">
+                            <option value="28">Action</option>
+                            <option value="12">Adventure</option>
+                            <option value="16">Animation</option>
+                            <option value="35">Comedy</option>
+                            <option value="80">Crime</option>
+                            <option value="99">Documentary</option>
+                            <option value="18">Drama</option>
+                            <option value="10751">Family</option>
+                            <option value="14">Fantasy</option>
+                            <option value="36">History</option>
+                        </select>
+                    </div>
+
                     <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
                 </form>
             </div>

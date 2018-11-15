@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class='form container-fluid'>
+    <div class='form container'>
         <form>
             <div class='form-group'>
                 <label for="name">Name</label>
@@ -36,7 +36,7 @@
             <div class='form-group'>
                 <label for="msg">Your Message</label>
                 <textarea class='form-control' id='msg' rows="10" placeholder='Jon Doe'></textarea>
-                <button type='submit' class='btn btn-primary'>Submit</button>
+                <button type='submit' class='btn btn-primary my-2'>Submit</button>
             </div>
         </form>
     </div>
