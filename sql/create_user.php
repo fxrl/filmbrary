@@ -16,6 +16,7 @@
             echo 'ERROR - Could not create user';
         } else {
             echo 'New user successfully created.';
+            header('location:../admin.php');
         }
     }
 ?>
