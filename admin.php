@@ -1,6 +1,3 @@
-<?php 
-    include 'components/check_login.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,68 +16,62 @@
 <body>
     <?php 
         include 'components/navbar.php';
-    ?>
+        include 'components/check_login_admin.php';
+        ?>
 
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
-            <h1 class='display-4'>Profile</h1>
-            <p class='lead'>Manage your account</p>
+            <h1 class='display-4'>Admin Control Panel</h1>
+            <p class='lead'>Manage Users and Slides</p>
         </div>
     </div>
 
     <div class='container'>
-        <div class='row'>
-            <div class='col'>
-                <h3>Hi <?php echo $_SESSION['username']?></h3>
-                <p>
-                    Manage your account and upload fresh pictures for your personalised filmbrary experience.
-                </p>
-                <button class='btn btn-primary'>Log Out</button>
-                <button class='btn btn-primary'>Delete Account</button>
-                
+        <div class='admin row'>
+            <div class='col'>                
                 <!-- create new user -->
                 <div class='my-4'>
                     <h3>Create New User</h3>
                     <form method='POST' action="sql/create_user.php">
                         <div class='form-group'>
                             <label for="username">Username</label>
-                            <input type="text" name="username" placeholder='John Doe'>
+                            <input type="text" class='form-control' name="username" placeholder='John Doe'>
                         </div>
 
                         <div class='form-group'>
                             <label for="email">Email</label>
-                            <input type="email" name="email" placeholder='john@doe.com'>                    
+                            <input type="email" class='form-control' name="email" placeholder='john@doe.com'>                    
                         </div>
 
                         <div class='form-group'>
                             <label for="password">Password</label>
-                            <input type="password" name='password'>                    
+                            <input type="password" class='form-control' name='password'>                    
                         </div>
 
                         <div class='form-group'>
                             <label for="userType">User Type</label>
-                            <select name="userType">
+                            <select class='form-control' name="userType">
                                 <option value="admin">Admin</option>
                                 <option value="browser">Browser</option>
                                 <option value="moderator">Moderator</option>
                             </select>
                         </div>
-                        <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
+                        <button name='submit' class='btn btn-primary mt-2'type='submit'>Submit</button>
                     </form>
                 </div>
             </div>
-            <div class='col'>
+            <div class=' col'>
                 <!-- upload new slides -->
                 <h3>Upload Slide</h3>
-                <h6>You can add custom pictures to the slider on the startpage.</h6>
                 <!-- run form on same page with action attribute -->
                 <form class='my-4' enctype="multipart/form-data" action="<?php echo $SERVER_['PHP_SELF']; ?>" method="POST">
-                    <div class="form-group">
-                        <label for="fileToUpload">Select Picture</label><br>
-                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                <div class="form-group">
+                        <label class='btn btn-primary' for="fileToUpload">Select Picture</label>
+                        <input type="file" class='form-control' name="fileToUpload" id="fileToUpload">
+                        <p class='mt-2'>Please select a image file.</p>
                         <small>Maximum allowed filesize: 1.5mb</small>
                     </div>
-                    <input type="submit" value="Upload Image" name="submit">        
+                    <input type="submit" class=' btn btn-primary' value="Upload Image" name="submit">        
                 </form>
                 <!-- upload script -->
                 <?php include 'components/file_upload.php'?>
@@ -91,7 +82,7 @@
             <div class='col'>
                 <!-- edit users -->
                 <h3>Edit Users</h3>
-                <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditable">
+                <table class="table table-responsive-md table-sm table-bordered text-center" id="userTable">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">User ID</th>
@@ -111,6 +102,7 @@
         </div>
     </div>
     <script src='js/scripts.js'></script>
+    <script src='js/user-table.js'></script>
 
     <?php include 'components/footer.php'; ?>
 

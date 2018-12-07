@@ -1,7 +1,3 @@
-<?php 
-    include 'components/check_login_mod.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +15,7 @@
 <body>
     <?php 
         include 'components/navbar.php';
+        include 'components/check_login_mod.php';
     ?>
 
     <div class='jumbotron jumbotron-fluid'>
@@ -30,66 +27,7 @@
 
     <div class='container'>
         <div class='row'>
-            <div class='col'>
-                <h3>Hi <?php echo $_SESSION['username']?></h3>
-                <p>
-                    Manage your account and upload fresh pictures for your personalised filmbrary experience.
-                </p>
-                <button class='btn btn-primary'>Log Out</button>
-                <button class='btn btn-primary'>Delete Account</button>
-            </div>
-            <!-- create new movie -->
-            <div class='col'>
-                <h3>Create New Movie</h3>
-                <form method='POST' action="sql/create_movie.php">
-                    <div class='form-group'>
-                        <label for="title">Title</label>
-                        <input type="text" name="title" placeholder='The Big Lebowski'>
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="tmdb">TMDB ID</label>
-                        <input type="number" name="tmdb" placeholder='111'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="year">Year</label>
-                        <input type="number" name="year" placeholder='2018'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="director">Director</label>
-                        <input type="text" name='director'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="plot">Plot</label>
-                        <input type="text" name='plot'>                    
-                    </div>
-
-                    <div class='form-group'>
-                        <label for="genre">Genre</label>
-                        <select name="genre">
-                            <option value="28">Action</option>
-                            <option value="12">Adventure</option>
-                            <option value="16">Animation</option>
-                            <option value="35">Comedy</option>
-                            <option value="80">Crime</option>
-                            <option value="99">Documentary</option>
-                            <option value="18">Drama</option>
-                            <option value="10751">Family</option>
-                            <option value="14">Fantasy</option>
-                            <option value="36">History</option>
-                        </select>
-                    </div>
-
-                    <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
-                </form>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col'>
+            <div class='col mt-4'>
                 <h3>Edit Movies</h3>
                 <table class="table table-responsive-md table-sm table-bordered text-center" id="makeEditableMovies">
                     <thead class="thead-dark">
@@ -111,11 +49,64 @@
                 </table>
             </div>
         </div>
+    
+        <div class='admin row'>
+            <!-- create new movie -->
+            <div class='col'>
+                <h3>Create New Movie</h3>
+                <form method='POST' action="sql/create_movie.php">
+                    <div class='form-group'>
+                        <label for="title">Title</label>
+                        <input class='form-control' type="text" name="title" placeholder='The Big Lebowski'>
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="tmdb">TMDB ID</label>
+                        <input class='form-control' type="number" name="tmdb" placeholder='111'>                    
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="year">Year</label>
+                        <input class='form-control' type="number" name="year" placeholder='2018'>                    
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="director">Director</label>
+                        <input class='form-control' type="text" name='director'>                    
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="plot">Plot</label>
+                        <textarea class='form-control' type="text" name='plot'></textarea>                   
+                    </div>
+
+                    <div class='form-group'>
+                        <label for="genre">Genre</label>
+                        <select class='form-control' name="genre">
+                            <option value="28">Action</option>
+                            <option value="12">Adventure</option>
+                            <option value="16">Animation</option>
+                            <option value="35">Comedy</option>
+                            <option value="80">Crime</option>
+                            <option value="99">Documentary</option>
+                            <option value="18">Drama</option>
+                            <option value="10751">Family</option>
+                            <option value="14">Fantasy</option>
+                            <option value="36">History</option>
+                        </select>
+                    </div>
+
+                    <button name='submit' class='btn btn-primary'type='submit'>Submit</button>
+                </form>
+            </div>
+            <div class='col'></div>
+        </div>
     </div>
 
     <?php 
         include 'components/footer.php';
     ?>
     <script src='js/scripts.js'></script>
+    <script src='js/movie-table.js'></script>
 </body>
 </html>

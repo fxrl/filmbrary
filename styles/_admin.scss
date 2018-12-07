@@ -1,0 +1,21 @@
+.admin form {
+    label {
+        color: $light;
+    }
+
+    p, small {
+        color: $light;
+    }
+
+    .btn {
+        border:none;
+    }
+
+    padding: $small;
+    background: $dark;
+    border-radius: $small;
+}
+
+#fileToUpload {
+    display: none;
+}

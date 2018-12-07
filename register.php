@@ -9,20 +9,24 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
  
 if(isset($_GET['register'])) {
     $error = false;
-    $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
-    $passwort2 = $_POST['passwort2'];
+    $email = htmlspecialchars($_POST['email']);
+    $passwort = htmlspecialchars($_POST['passwort']);
+    $passwort2 = htmlspecialchars($_POST['passwort2']);
+    $type = 'browser';
   
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
-        $error = true;
-    }     
+    
     if(strlen($passwort) == 0) {
-        echo 'Bitte ein Passwort angeben<br>';
+        echo 
+        "<div class='alert alert-danger' role='alert'>
+            Please enter a password.
+        </div>";
         $error = true;
     }
     if($passwort != $passwort2) {
-        echo 'Die Passwörter müssen übereinstimmen<br>';
+        echo 
+        "<div class='alert alert-danger' role='alert'>
+        Passwords do not match.
+        </div>";
         $error = true;
     }
     
@@ -33,7 +37,11 @@ if(isset($_GET['register'])) {
         $user = $statement->fetch();
         
         if($user !== false) {
-            echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+            
+            echo 
+            "<div class='alert alert-danger' role='alert'>
+                Email already in use.
+            </div>";
             $error = true;
         }    
     }
@@ -42,14 +50,20 @@ if(isset($_GET['register'])) {
     if(!$error) {    
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
         
-        $statement = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :passwort)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+        $statement = $pdo->prepare("INSERT INTO users (email, password, user_type) VALUES (:email, :passwort, :type)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'type' => $type));
         
         if($result) {        
-            echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+            echo
+            "<div class='alert alert-success' role='alert'>
+                You have been successfully registered. <a href='login.php'>Zum Login</a>
+            </div>";
             $showFormular = false;
         } else {
-            echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+            echo 
+            "<div class='alert alert-danger' role='alert'>
+                Error while saving. Please try again.
+            </div>";
         }
     } 
 }

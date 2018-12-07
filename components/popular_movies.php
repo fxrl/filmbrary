@@ -1,5 +1,6 @@
 <?php
     require_once 'vendor/autoload.php';
+    include 'components/database.php';
 
     $token  = new \Tmdb\ApiToken('399d678918d2d64323e29a196cfacba3');
     $client = new \Tmdb\Client($token);
@@ -43,8 +44,18 @@
         // get genre
         $genreArray = array();
         foreach ($popularMovie->getGenres() as $genre) {
-            array_push($genreArray,$genre->getID());
-        }
+            $genreID = $genre->getID();
+            $sql = "SELECT genre FROM genres WHERE id=$genreID";
+            $genreName = mysqli_query($conn, $sql);
+            array_push($genreArray, $genreName);
+        };
+
+        // foreach($genreArray as $genreID) {
+        //     $sql = "SELECT genre FROM genres WHERE id=$genreID";
+        //     $genreName = mysqli_query($conn, $sql);
+        //     $genreNameArray = array();
+        //     array_push($genreNameArray,$genreID);
+        // }
 
         //get plot description
         $fullPlot = getaccess($popularMovie, 'overview');

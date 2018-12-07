@@ -3,8 +3,8 @@ session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=filmbrary', 'root', 'root');
  
 if(isset($_GET['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
     
     //secured by sending sql and user input seperate
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
@@ -17,6 +17,7 @@ if(isset($_GET['login'])) {
         $_SESSION['userid'] = $user['id'];
         $_SESSION['username'] = $user['user_name'];
         $_SESSION['userType'] = $user['user_type'];
+        $_SESSION['userip'] = $_SERVER['REMOTE_ADDR'];
         // redirect to admin.php
         if ($_SESSION['userType'] === 'admin') {
           header("Location: admin.php");
